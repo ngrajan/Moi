@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "handles db queries and api functionality for moi application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**/*.js",
+    "start": "nodemon index.js"
+  },
+  "author": "Gokulrajan Natarajan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.33.0"
+  }
+}
