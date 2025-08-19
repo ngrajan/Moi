@@ -6,17 +6,25 @@ process.on("uncaughtException", (err) => {
 });
 
 import app from "./index.js";
+import sequelize from "./sequelize.js";
 configDotenv();
 
 const port = process.env.PORT || 8001;
 
-const server = app.listen(port, () => {
-  console.log(`Server is running at port: ${port}`);
+let server;
+sequelize.sync().then(() => {
+  server = app.listen(port, () => {
+    console.log(`Server is running at port: ${port}`);
+  });
 });
 
 process.on("unhandledRejection", (err) => {
   console.error(err.name, err.message);
-  server.close(() => {
+  if (server) {
+    server.close(() => {
+      process.exit(1);
+    });
+  } else {
     process.exit(1);
-  });
+  }
 });
