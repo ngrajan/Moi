@@ -1,9 +1,8 @@
 import express from "express";
-import createUser from "../controllers/userController.js";
-import { createEvent } from "../controllers/eventController.js";
+import createUserWithEvent from "../controllers/userController.js";
 
 const router = express.Router();
 
-router.route("/").post(createUser, createEvent);
+router.route("/").post(createUserWithEvent);
 
 export default router;
