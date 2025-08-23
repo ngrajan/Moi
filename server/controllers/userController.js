@@ -1,6 +1,7 @@
 import User from "../models/usersModel.js";
 import Event from "../models/eventModel.js";
 import AppError from "../utils/appError.js";
+import { Op } from "sequelize";
 
 export default async function createUserWithEvent(req, res, next) {
   try {
@@ -15,8 +16,24 @@ export default async function createUserWithEvent(req, res, next) {
       eventName,
     } = req.body;
 
+    // check if user is already present
+    const checkUserExists = async (obj) => {
+      const isExistingUser = await User.findOne({
+        where: {
+          firstName: obj.firstName,
+          lastName: obj.lastName,
+          place: obj.place,
+        },
+      });
+      return isExistingUser;
+    };
     // 1. Create user
-    const user = await User.create({ firstName, lastName, place });
+    let user;
+    if (await checkUserExists(req.body)) {
+      return next(new AppError("User already exists", 409));
+    } else {
+      user = await User.create({ firstName, lastName, place });
+    }
 
     // 2. Create event with FK user_id
     const event = await Event.create({
