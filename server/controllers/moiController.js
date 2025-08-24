@@ -1,9 +1,8 @@
 import User from "../models/usersModel.js";
 import Event from "../models/eventModel.js";
 import AppError from "../utils/appError.js";
-import { Op } from "sequelize";
-
-export default async function createUserWithEvent(req, res, next) {
+import { uploadExcel } from "../utils/multer.js";
+export async function createUserWithEvent(req, res, next) {
   try {
     const {
       firstName,
@@ -64,3 +63,15 @@ export default async function createUserWithEvent(req, res, next) {
     });
   }
 }
+
+export const createDataFromExcel = (req, res, next) => {
+  try {
+    uploadExcel(req, res);
+    res.send("Uploaded Successfully");
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      data: error.message,
+    });
+  }
+};
