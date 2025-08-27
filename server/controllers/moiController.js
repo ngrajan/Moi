@@ -75,6 +75,8 @@ export const createDataFromExcel = (req, res, next) => {
 
       const excelData = parsedExcelData(req.file.path);
 
+      const userData = excelData;
+
       // Generic field filter
       const filterFields = (Model, data) => {
         const validFields = Object.keys(Model.getAttributes());
