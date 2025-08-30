@@ -7,13 +7,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.js",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "inspect": "node --inspect server.js"
   },
   "author": "Gokulrajan Natarajan",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
+    "cron": "^4.3.3",
     "dotenv": "^17.2.1",
     "express": "^4.21.2",
     "fs": "^0.0.1-security",

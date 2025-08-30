@@ -67,50 +67,51 @@ export async function createUserWithEvent(req, res, next) {
 
 // ! not working as expected
 export const createDataFromExcel = (req, res, next) => {
-  // try {
-  //   const excelUploader = uploadExcel();
-
-  //   excelUploader(req, res, async (err) => {
-  //     if (err) return next(err);
-
-  //     const excelData = parsedExcelData(req.file.path);
-
-  //     const userData = excelData;
-
-  //     // Generic field filter
-  //     const filterFields = (Model, data) => {
-  //       const validFields = Object.keys(Model.getAttributes());
-  //       return data.map((row) =>
-  //         Object.fromEntries(
-  //           Object.entries(row).filter(([key]) => validFields.includes(key))
-  //         )
-  //       );
-  //     };
-
-  //     // Clean data separately for each model
-  //     // const userData = filterFields(User, excelData);
-  //     const eventData = filterFields(Event, excelData);
-
-  //     // Insert
-  //     const insertUsers = await User.bulkCreate(userData, { validate: true });
-  //     const insertEvents = await Event.bulkCreate(eventData, {
-  //       validate: true,
-  //     });
-
-  //     res.status(201).json({
-  //       status: "success",
-  //       data: {
-  //         users: insertUsers,
-  //         events: insertEvents,
-  //       },
-  //     });
-  //   });
-  // } catch (error) {
-  //   res.status(500).json({
-  //     status: "fail",
-  //     data: error.message,
-  //   });
-  // }
-  console.log(req.file);
-  res.send(`${req.file.originalName}`);
+  console.log(req.excel);
+  res.send("the excel object is recieved").status(201);
 };
+
+// try {
+//   const excelUploader = uploadExcel();
+
+//   excelUploader(req, res, async (err) => {
+//     if (err) return next(err);
+
+//     const excelData = parsedExcelData(req.file.path);
+
+//     const userData = excelData;
+
+//     // Generic field filter
+//     const filterFields = (Model, data) => {
+//       const validFields = Object.keys(Model.getAttributes());
+//       return data.map((row) =>
+//         Object.fromEntries(
+//           Object.entries(row).filter(([key]) => validFields.includes(key))
+//         )
+//       );
+//     };
+
+//     // Clean data separately for each model
+//     // const userData = filterFields(User, excelData);
+//     const eventData = filterFields(Event, excelData);
+
+//     // Insert
+//     const insertUsers = await User.bulkCreate(userData, { validate: true });
+//     const insertEvents = await Event.bulkCreate(eventData, {
+//       validate: true,
+//     });
+
+//     res.status(201).json({
+//       status: "success",
+//       data: {
+//         users: insertUsers,
+//         events: insertEvents,
+//       },
+//     });
+//   });
+// } catch (error) {
+//   res.status(500).json({
+//     status: "fail",
+//     data: error.message,
+//   });
+// }
