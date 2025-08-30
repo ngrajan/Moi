@@ -1,8 +1,8 @@
 import User from "../models/usersModel.js";
 import Event from "../models/eventModel.js";
 import AppError from "../utils/appError.js";
-import { uploadExcel } from "../utils/multer.js";
-import { parsedExcelData } from "../parsingFacotry/excelParsing.js";
+// import { uploadExcel } from "../utils/multer.js";
+// import { parsedExcelData } from "../parsingFacotry/excelParsing.js";
 export async function createUserWithEvent(req, res, next) {
   try {
     const {
@@ -67,48 +67,50 @@ export async function createUserWithEvent(req, res, next) {
 
 // ! not working as expected
 export const createDataFromExcel = (req, res, next) => {
-  try {
-    const excelUploader = uploadExcel();
+  // try {
+  //   const excelUploader = uploadExcel();
 
-    excelUploader(req, res, async (err) => {
-      if (err) return next(err);
+  //   excelUploader(req, res, async (err) => {
+  //     if (err) return next(err);
 
-      const excelData = parsedExcelData(req.file.path);
+  //     const excelData = parsedExcelData(req.file.path);
 
-      const userData = excelData;
+  //     const userData = excelData;
 
-      // Generic field filter
-      const filterFields = (Model, data) => {
-        const validFields = Object.keys(Model.getAttributes());
-        return data.map((row) =>
-          Object.fromEntries(
-            Object.entries(row).filter(([key]) => validFields.includes(key))
-          )
-        );
-      };
+  //     // Generic field filter
+  //     const filterFields = (Model, data) => {
+  //       const validFields = Object.keys(Model.getAttributes());
+  //       return data.map((row) =>
+  //         Object.fromEntries(
+  //           Object.entries(row).filter(([key]) => validFields.includes(key))
+  //         )
+  //       );
+  //     };
 
-      // Clean data separately for each model
-      const userData = filterFields(User, excelData);
-      const eventData = filterFields(Event, excelData);
+  //     // Clean data separately for each model
+  //     // const userData = filterFields(User, excelData);
+  //     const eventData = filterFields(Event, excelData);
 
-      // Insert
-      const insertUsers = await User.bulkCreate(userData, { validate: true });
-      const insertEvents = await Event.bulkCreate(eventData, {
-        validate: true,
-      });
+  //     // Insert
+  //     const insertUsers = await User.bulkCreate(userData, { validate: true });
+  //     const insertEvents = await Event.bulkCreate(eventData, {
+  //       validate: true,
+  //     });
 
-      res.status(201).json({
-        status: "success",
-        data: {
-          users: insertUsers,
-          events: insertEvents,
-        },
-      });
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: "fail",
-      data: error.message,
-    });
-  }
+  //     res.status(201).json({
+  //       status: "success",
+  //       data: {
+  //         users: insertUsers,
+  //         events: insertEvents,
+  //       },
+  //     });
+  //   });
+  // } catch (error) {
+  //   res.status(500).json({
+  //     status: "fail",
+  //     data: error.message,
+  //   });
+  // }
+  console.log(req.file);
+  res.send(`${req.file.originalName}`);
 };
