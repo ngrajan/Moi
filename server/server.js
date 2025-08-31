@@ -1,4 +1,5 @@
 import { configDotenv } from "dotenv";
+import { fileDeletion } from "./utils/cronJob/fileDeletion.js";
 
 process.on("uncaughtException", (err) => {
   console.error(err.name, err.message);
@@ -15,6 +16,7 @@ let server;
 sequelize.sync().then(() => {
   server = app.listen(port, () => {
     console.log(`Server is running at port: ${port}`);
+    fileDeletion; // cron schedule
   });
 });
 
