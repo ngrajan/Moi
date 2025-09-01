@@ -8,12 +8,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.js",
     "start": "nodemon server.js",
-    "inspect": "node --inspect server.js"
+    "inspect": "node --inspect server.js",
+    "worker": "nodemon worker.js"
   },
   "author": "Gokulrajan Natarajan",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^2.2.0",
+    "bullmq": "^5.58.4",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^4.21.2",
