@@ -1,1 +1,1 @@
-import "./backgroundJobs.js/workers/storeExcelData.js";
+import "./backgroundJobs/workers/storeExcelData.js";

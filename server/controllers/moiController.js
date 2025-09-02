@@ -2,7 +2,7 @@ import User from "../models/usersModel.js";
 import Event from "../models/eventModel.js";
 import AppError from "../utils/appError.js";
 import { catchAsync } from "../utils/catchAsync.js";
-import { storeExcelDataQueue } from "../backgroundJobs.js/queue/storeExcelData.js";
+import { storeExcelDataQueue } from "../backgroundJobs/queue/storeExcelData.js";
 
 export const createUserWithEvent = catchAsync(async (req, res, next) => {
   const {

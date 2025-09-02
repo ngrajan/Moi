@@ -9,7 +9,8 @@
     "lint": "eslint src/**/*.js",
     "start": "nodemon server.js",
     "inspect": "node --inspect server.js",
-    "worker": "nodemon worker.js"
+    "worker": "nodemon worker.js",
+    "dev": "concurrently \"npm start\" \"npm run worker\""
   },
   "author": "Gokulrajan Natarajan",
   "license": "ISC",
@@ -30,6 +31,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "eslint": "^9.33.0"
   }
 }

@@ -5,7 +5,7 @@ import Event from "../../models/eventModel.js";
 import { Op } from "sequelize";
 
 // ! bug - if no user in the db(deleted manually) the job is getting rejected.
-// * Working fine if some changes like typing fixing this issue.
+// * Working fine if some changes like typing fixes this issue.
 export const storeExcelDataWorker = new Worker(
   "excelDataQueue",
   async (job) => {
